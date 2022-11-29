@@ -15,4 +15,8 @@ class TheLoai extends Model
     public function LoaiTin() {
         return $this->hasMany(LoaiTin::class, 'idTheLoai', 'id');
     }
+    // relation to table TinTuc
+    public function TinTuc() {
+        return $this->hasManyThrough(TinTuc::class ,LoaiTin::class, 'idTheLoai', 'idLoaiTin', 'id');
+    }
 }

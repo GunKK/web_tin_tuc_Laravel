@@ -1,6 +1,6 @@
 @extends('Frontend.layouts.master')
 @section('title', 'Home Page')
-@section('content')    
+@section('content') 
 <div class="container">
 
     <!-- slider -->
@@ -10,249 +10,46 @@
     <div class="space20"></div>
 
 
-    <div class="row main-left">
-       @include('Frontend.layouts.menu')
-        <div class="col-md-9">
+    <div class="row">
+        <div class="col" style="margin: 0 15px">
             <div class="panel panel-default">
-                <div class="panel-heading text-light" style="background-color: var(--primary-color)">
+                <div class="panel-heading text-light text-center" style="background-color: var(--primary-color)">
                     <h2 style="margin-top:0px; margin-bottom:0px;">Laravel Tin Tức</h2>
                 </div>
 
                 <div class="panel-body">
                     <!-- item -->
                     <div class="row-item row">
-                        <h3>
-                            <a href="category.html">Category</a> |
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                        </h3>
-                        <div class="col-md-8 border-right">
+                        <h2 class="text-center">Admin</h2>
+                        <div class="col-md-6 col-sm-12 border-right">
                             <div class="col-md-5">
-                                <a href="detail.html">
-                                    <img class="img-responsive" src="image/320x150.png" alt="">
+                                <a href="https://www.facebook.com/GUNKK.2510">
+                                    <img class="img-responsive" style="border-radius: 50%" src="{{ asset('images/profile_1913304.jpg') }}" alt="">
                                 </a>
                             </div>
 
                             <div class="col-md-7">
-                                <h3>Project Five</h3>
+                                <h3>I'm Hau Duc Nguyen</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-                                <a class="btn btn-warning" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                                <a class="btn btn-primary" href="https://www.facebook.com/GUNKK.2510">Contact</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="col-md-5">
+                                <a href="#">
+                                    <img class="img-responsive" style="border-radius: 50%" src="{{ asset('images/logo.jpg') }}" alt="">
+                                </a>
                             </div>
 
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
+                            <div class="col-md-7">
+                                <h3>Bạn chưa có tài khoản</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
+                                <a class="btn btn-primary" href="{{ route('signUp') }}">Sign up now</a>
+                            </div>
                         </div>
 
                         <div class="break"></div>
                     </div>
-                    <!-- end item -->
-                    <!-- item -->
-                    <div class="row-item row">
-                        <h3><a href="category.html">Category</a> |
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                        </h3>
-                        <div class="col-md-8 border-right">
-                            <div class="col-md-5">
-                                <a href="detail.html">
-                                    <img class="img-responsive" src="image/320x150.png" alt="">
-                                </a>
-                            </div>
-                            <div class="col-md-7">
-                                <h3>Project Five</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-                                <a class="btn btn-warning" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-                        </div>
-
-
-
-                        <div class="break"></div>
-                    </div>
-                    <!-- end item -->
-                    <!-- item -->
-                    <div class="row-item row">
-                        <h3><a href="category.html">Category</a> |
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                        </h3>
-                        <div class="col-md-8 border-right">
-                            <div class="col-md-5">
-                                <a href="detail.html">
-                                    <img class="img-responsive" src="image/320x150.png" alt="">
-                                </a>
-                            </div>
-                            <div class="col-md-7">
-                                <h3>Project Five</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-                                <a class="btn btn-warning" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-                        </div>
-
-
-
-                        <div class="break"></div>
-                    </div>
-                    <!-- end item -->
-                    <!-- item -->
-                    <div class="row-item row">
-                        <h3><a href="category.html">Category</a> |
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                            <small><a href="category.html"><i>subtitle</i></a>/</small>
-                        </h3>
-                        <div class="col-md-8 border-right">
-                            <div class="col-md-5">
-                                <a href="detail.html">
-                                    <img class="img-responsive" src="image/320x150.png" alt="">
-                                </a>
-                            </div>
-                            <div class="col-md-7">
-                                <h3>Project Five</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-                                <a class="btn btn-warning" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-                        </div>
-
-
-
-                        {{-- <div class="break"></div> --}}
-                    </div>
-                    <!-- end item -->
-
                 </div>
             </div>
         </div>
