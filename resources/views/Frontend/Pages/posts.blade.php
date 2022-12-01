@@ -35,12 +35,12 @@
                             <div class="col-md-8 border-right">
                                 <div class="col-md-5">
                                     <a href="{{ route('postDetail',['id'=>$firstPost->id]) }}" style="display: block; margin-top:20px;">
-                                        <img class="img-responsive" src="{{ asset('images/tintuc/' . $firstPost->Hinh) }}" alt="" style="width: 190px; height: 120px; border-radius: 2px">
+                                        <img class="img-responsive" src="{{ asset('images/tintuc/' . $firstPost->Hinh) }}" alt="" style="width: 190px; height: 120px; border-radius: 2px"> 
                                     </a>
                                 </div>
                                 <div class="col-md-7">
                                     <h4>{{ $firstPost->Ten }}</h4>
-                                    <p style="text-align: justify" >{{ $firstPost->TomTat }}</p>
+                                    <p style="text-align: justify" class="format-paragraph-4">{{ $firstPost->TomTat }}</p>
                                     <a class="btn btn-warning" href="{{ route('postDetail',['id'=>$firstPost->id]) }}">Chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
                                 </div>
 
@@ -63,7 +63,6 @@
                         </div>
                         @endif
                     @endforeach
-                    <!-- end item -->
                 </div>
             </div>
         </div>

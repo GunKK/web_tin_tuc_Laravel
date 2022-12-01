@@ -2,14 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use App\Models\TheLoai; 
 use App\Models\LoaiTin;
 use App\Models\Slide;
 use App\Models\TinTuc;
-// use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,8 +27,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function boot()
     {
+        Paginator::useBootstrap();
         $theLoais = TheLoai::all();
         $slides = Slide::all();
         View::share('theLoais', $theLoais);

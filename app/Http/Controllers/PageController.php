@@ -8,17 +8,21 @@ use App\Models\LoaiTin;
 use App\Models\TinTuc;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class PageController extends Controller
 {
-    function __construct()
-    {
-        $theLoais = TheLoai::all();
-    }
-
     public function getPosts()
     {
         return view('Frontend.Pages.posts');
+    }
+
+    public function postDetail($id) {
+        $post = TinTuc::find($id);
+        $hotPosts = TinTuc::where('NoiBat', 1)->take(4)->get();
+        $relationPosts = TinTuc::where("idLoaiTin", $post->idLoaiTin)->take(4)->get();
+        $date = Carbon::now()->toDateTimeString();
+        return view('Frontend.Pages.post_detail', compact('post', 'hotPosts', 'relationPosts', 'date'));
     }
 
     public function getContact()
@@ -69,21 +73,21 @@ class PageController extends Controller
     {
         $validate = $req->validate(
             [
-                'email' => 'required | unique',
-                'password' => 'required | min:8',
+                'email' => 'required | email',
+                'password' => 'required | min:8'
             ],
             [
                 'email.required' => 'Email is not Null',
-                'email.unique' => 'Email already exists',
+                'email.email' => 'Email is not email Format',
                 'password.required' => 'Password is not Null',
-                'password.min' => 'Password must be at least 8 characters',
+                'password.min' => 'Password must be at least 8 characters'
             ]
         );
 
         if (Auth::attempt(['email' => $validate['email'], 'password' => $validate['password']])) {
             return redirect()->route('home');
         } else {
-            return redirect()->route('home')->with('thongBao', 'Đăng nhập thất bại');
+            return redirect()->route('login')->with('thongBao', 'Đăng nhập thất bại');
         }
     }
 
@@ -92,9 +96,20 @@ class PageController extends Controller
         return view('Frontend.Pages.login');
     }
 
-    public function getLogout()
+    public function logout()
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function getLoaiTin($id) 
+    {
+        $loaiTin = LoaiTin::find($id);
+        $posts = TinTuc::where('idLoaiTin', $id)->paginate(5);
+        return view('Frontend.Pages.loai_tin', compact('loaiTin', 'posts'));
+    }
+
+    public function comment(Request $req) {
+        // $userId = $req->
     }
 }

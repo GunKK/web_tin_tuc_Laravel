@@ -37,23 +37,24 @@
                 </form>
     
                 <ul class="nav navbar-nav pull-right">
+                @if (Auth::check())
+                    <li>
+                        <a>
+                            <i class="fa-regular fa-user"></i>
+                            {{ Auth::user()->name}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}">Đăng xuất</a>
+                    </li>
+                @else
                     <li>
                         <a href="{{ route('signUp') }}">Sign up</a>
                     </li>
                     <li>
                         <a href="{{ route('login') }}">Login</a>
                     </li>
-                    {{-- <li>
-                        <a>
-                            <span class ="glyphicon glyphicon-user"></span>
-                            Nguyễn Đức Hậu
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="#">Đăng xuất</a>
-                    </li> --}}
-    
+                @endif
                 </ul>
             </div>
     
