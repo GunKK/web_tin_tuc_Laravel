@@ -13,7 +13,7 @@
                 <ul>
                     @foreach ( $theLoai->LoaiTin as $loaiTin )    
                     <li class="list-group-item">
-                        <a href="#">{{ $loaiTin->Ten }}</a>
+                        <a href="{{ route('loaiTin',['id'=>$loaiTin->id]) }}">{{ $loaiTin->Ten }}</a>
                     </li>
                     @endforeach
                 </ul>
