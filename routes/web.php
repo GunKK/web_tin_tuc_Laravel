@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' =>'/'], function() {
     Route::get('/posts', [PageController::class, 'getPosts'])->name('posts');
+    Route::get('/posts/{id}', [PageController::class, 'postDetail'])->name('postDetail');
+    Route::get('/loaiTin/{id}', [PageController::class, 'getLoaiTin'])->name('loaiTin');
     Route::get('/about', [PageController::class, 'getAbout'])->name('about');
     Route::get('/contact', [PageController::class, 'getContact'])->name('contact');
     Route::get('/signUp', [PageController::class, 'getSignUp'])->name('signUp');

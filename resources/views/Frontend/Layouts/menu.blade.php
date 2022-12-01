@@ -7,13 +7,13 @@
         </li>
         @foreach ( $theLoais as $theLoai )
             @if(count($theLoai->LoaiTin)>0)
-                <li href="#" class="list-group-item menu1" style="cursor: pointer;">
+                <li class="list-group-item menu1" style="cursor: pointer;">
                     {{ $theLoai->Ten }}
                 </li>
                 <ul>
                     @foreach ( $theLoai->LoaiTin as $loaiTin )    
                     <li class="list-group-item">
-                        <a href="#">{{ $loaiTin->Ten }}</a>
+                        <a href="{{ route('loaiTin',['id'=>$loaiTin->id]) }}">{{ $loaiTin->Ten }}</a>
                     </li>
                     @endforeach
                 </ul>
