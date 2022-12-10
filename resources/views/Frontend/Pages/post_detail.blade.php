@@ -37,12 +37,15 @@
                 <!-- Comments Form -->
                 <div class="well">
                     <h4>Viết bình luận ...<i class="fa-sharp fa-solid fa-pencil"></i></h4>
-                    <input type="hidden" name="userId" value="{{ Auth::user()->id }}">
-                    <input type="hidden" name="postId" value="{{ $post->id }}">
-                    <form role="form" action="{{ route('comment') }}" method="POST"> 
+                    <form role="form" action="{{ route('comment',['id'=>$post->id]) }}" method="POST"> 
+                        @csrf
+                        <input type="hidden" name="userId" value="{{ Auth::user()->id }}">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" placeholder="Write comment..."></textarea>
+                            <textarea class="form-control" name="content" rows="3" placeholder="Write comment..."></textarea>
                         </div>
+                        @if ($errors->has('content'))
+                            <div class="text-danger">{{ $errors->first('content') }}</div>
+                        @endif
                         <button type="submit" class="btn btn-primary btn-lg">SEND</button>
                     </form>
                 </div>
@@ -50,33 +53,21 @@
                 <hr>
 
                 <!-- Posted Comments -->
-
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="{{ asset('images/logo.jpg') }}" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                @foreach ( $comments as $comment )
+                    <!-- Comment -->
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <i class="fa-regular fa-user"></i>
+                            {{ $comment->User->name}}
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">Start Bootstrap
+                                <small>August 25, 2014 at 9:30 PM</small>
+                            </h4>
+                            {!! $comment->NoiDung !!}
+                        </div>
                     </div>
-                </div>
-
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="{{ asset('images/logo.jpg') }}" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
-
+                @endforeach
             </div>
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-3">
@@ -123,7 +114,7 @@
                                             </a>
                                         </div>
                                         <div class="col-md-7" style="padding: 0px">
-                                            <a href="{ route('postDetail', ['id'=>$hotPost->id]) }}" class="format-paragraph-2"><b>{{ $hotPost->TieuDe }}</b></a>
+                                            <a href="{{  route('postDetail', ['id'=>$hotPost->id])  }}" class="format-paragraph-2"><b>{{ $hotPost->TieuDe }}</b></a>
                                         </div>
                                     </div>
                                     <div class="row" style="margin-top: 8px">

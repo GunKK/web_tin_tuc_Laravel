@@ -17,6 +17,6 @@ class Comment extends Model
     }
 
     public function User() {
-        return $this->belongsTo(User::class, 'isUser', 'id');
+        return $this->belongsTo(User::class, 'idUser', 'id');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\TheLoai; 
 use App\Models\LoaiTin; 
@@ -21,8 +22,9 @@ class PageController extends Controller
         $post = TinTuc::find($id);
         $hotPosts = TinTuc::where('NoiBat', 1)->take(4)->get();
         $relationPosts = TinTuc::where("idLoaiTin", $post->idLoaiTin)->take(4)->get();
+        $comments = Comment::where('idTinTuc', $id)->get();
         $date = Carbon::now()->toDateTimeString();
-        return view('Frontend.Pages.post_detail', compact('post', 'hotPosts', 'relationPosts', 'date'));
+        return view('Frontend.Pages.post_detail', compact('post', 'hotPosts', 'relationPosts', 'date','comments'));
     }
 
     public function getContact()
@@ -109,7 +111,42 @@ class PageController extends Controller
         return view('Frontend.Pages.loai_tin', compact('loaiTin', 'posts'));
     }
 
-    public function comment(Request $req) {
-        // $userId = $req->
+    public function comment(Request $req, $id) {
+        $userId = $req->userId;
+        $val = $req->validate(
+            [
+                'content'=>'required | min:10 | max:1000'
+            ],
+            [
+                'content.required'=>'Please write your comment',
+                'content.min'=>'min are 10 character',
+                'content.max'=>'max are 10 character',
+            ]
+        );
+        $content = $val['content'];
+        $comment = new Comment();
+        $comment->idTinTuc = $id;
+        $comment->idUser = $userId;
+        $comment->NoiDung = $content;
+        $comment->save();
+        return redirect()->route('postDetail',['id'=>$id]);
+    }
+
+    public function myAccount() {
+        return view('Frontend.Pages.my_account');
+    }
+
+    public function postSearch(Request $req) {
+        $key = $req->key;
+        $posts = TinTuc::where('TieuDe', 'like', '%'.$key.'%')
+                        ->orWhere('TomTat', 'like', '%'.$key.'%')
+                        ->orWhere('NoiDung', 'like', '%'.$key.'%')
+                        ->take(30)->paginate(5);
+        return view("Frontend.Pages.search",compact('key', 'posts'));
+    }
+
+    public function getSearch($key) {
+        $key = $key;
+        return view("Frontend.Pages.search", compact('key'));
     }
 }
