@@ -29,9 +29,10 @@
                     </li>
                 </ul>
     
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" action="{{ route('search') }}" method="post" role="search">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Search">
+                        @csrf
+                      <input type="text" class="form-control" name="key" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-warning">Search</button>
                 </form>
@@ -39,7 +40,7 @@
                 <ul class="nav navbar-nav pull-right">
                 @if (Auth::check())
                     <li>
-                        <a>
+                        <a href="{{ route('myAccount') }}">
                             <i class="fa-regular fa-user"></i>
                             {{ Auth::user()->name}}
                         </a>

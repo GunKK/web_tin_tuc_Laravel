@@ -32,5 +32,8 @@ Route::group(['prefix' =>'/'], function() {
     Route::post('/signUp', [PageController::class, 'postSignUp'])->name('signUp');
     Route::get('/login', [PageController::class, 'getLogin'])->name('login');
     Route::post('/login', [PageController::class, 'postLogin'])->name('login');
-    Route::post('/login', [PageController::class, 'postLogin'])->name('login');
+    Route::post('/logout', [PageController::class, 'login'])->name('logout');
+    Route::get('/my.account', [PageController::class, 'myAccount'])->name('myAccount');
+    Route::post('/search', [PageController::class, 'postSearch'])->name('search');
+    Route::get('/search', [PageController::class, 'getSearch'])->name('search');
 });
