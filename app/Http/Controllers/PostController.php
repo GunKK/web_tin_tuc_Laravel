@@ -2,19 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\TheLoai; 
-use App\Models\LoaiTin; 
 use App\Models\TinTuc;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function __construct()
+    public function getPosts() 
     {
-        $posts = TinTuc::all();
+        $posts = TinTuc::paginate(6);
+        return view('Admin.Posts.index', compact('posts'));
     }
 
-    public function show() {
-        
+    public function getAddPost() 
+    {
+
     }
+
+    public function postAddPost() 
+    {
+
+    }
+
+    public function getUpdatePost() 
+    {
+
+    }
+
+    public function postUpdatePost() 
+    {
+
+    }
+
+    public function getDestroyPost() 
+    {
+
+    }
+
 }

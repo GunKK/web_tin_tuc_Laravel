@@ -29,7 +29,7 @@
                     </li>
                 </ul>
     
-                <form class="navbar-form navbar-left" action="{{ route('search') }}" method="post" role="search">
+                <form class="navbar-form navbar-left" action="{{ route('search') }}" method="get" role="search">
                     <div class="form-group">
                         @csrf
                       <input type="text" class="form-control" name="key" placeholder="Search">

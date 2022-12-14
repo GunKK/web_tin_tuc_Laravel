@@ -136,17 +136,12 @@ class PageController extends Controller
         return view('Frontend.Pages.my_account');
     }
 
-    public function postSearch(Request $req) {
+    public function getSearch(Request $req) {
         $key = $req->key;
         $posts = TinTuc::where('TieuDe', 'like', '%'.$key.'%')
                         ->orWhere('TomTat', 'like', '%'.$key.'%')
                         ->orWhere('NoiDung', 'like', '%'.$key.'%')
                         ->take(30)->paginate(5);
-        return view("Frontend.Pages.search",compact('key', 'posts'));
-    }
-
-    public function getSearch($key) {
-        $key = $key;
-        return view("Frontend.Pages.search", compact('key'));
+        return view("Frontend.Pages.search", compact('posts', 'key'));
     }
 }
