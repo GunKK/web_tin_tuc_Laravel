@@ -88,4 +88,7 @@ Route::group(["prefix" => "/admin"], function(){
             Route::get('topic/{categoryId}',[PostController::class, "getCategory"])->name('ajaxCategory');
         });
     });
+    // Route::group(['prefix' => 'ajax'], function(){
+    //     Route::get('topic/{categoryId}',[PostController::class, "getCategory"])->name('ajaxCategory');
+    // });
 });

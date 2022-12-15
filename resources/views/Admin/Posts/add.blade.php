@@ -77,7 +77,8 @@
         $(document).ready(function(){
             $("#category").change(function(){
                 var categoryId = $(this).val();
-                $.get("ajax/topic/" + categoryId, function(data){
+                console.log(categoryId);
+                $.get("/admin/post/ajax/topic/" + categoryId, function(data){
                 $("#topic").html(data);
                 });
             });

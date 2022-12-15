@@ -73,20 +73,75 @@ class PostController extends Controller
         return redirect()->route('post')->with("notify", "Thêm mới thành công");
     }
 
-    public function getShowPost() {
-
+    public function getShowPost($id) {
+        $post = TinTuc::find($id);
+        $categorys = TheLoai::all();
+        $topics = LoaiTin::all();
+        return view('Admin.Posts.show', compact('post', 'categorys', 'topics'));
     }
 
-    public function getUpdatePost() {
-
+    public function getUpdatePost($id) {
+        $post = TinTuc::find($id);
+        $categorys = TheLoai::all();
+        $topics = LoaiTin::all();
+        return view('Admin.Posts.edit', compact('post', 'categorys', 'topics'));
     }
 
-    public function postUpdatePost() {
+    public function postUpdatePost(Request $req, $id) {
+        $val = $req->validate(
+            [
+                "loaiTinId" => "required",
+                "tieuDe" => "min:3",
+                "tomTat" => "required",
+                "noiDung" => "required"
+            ],
+            [
+                "loaiTinId.required" => "Bạn chưa chọn loại tin",
+                "tieuDe.min" => "Tiêu đề ít nhất 3 ký tự",
+                "tomTat.required" => "Bạn chưa nhập tóm tắt",
+                "noiDung.required" => "Bạn chưa nhập nội dung"
+            ]
+        );
 
+        $post = TinTuc::find($id);
+        $link = $post->Hinh;
+        $post->TieuDe = $val["tieuDe"];
+        $post->TieuDeKhongDau = $val["tieuDe"];
+        $post->idLoaiTin = $val["loaiTinId"];
+        $post->TomTat = $val["tomTat"];
+        $post->NoiDung = $val["noiDung"];
+        $post->SoLuotXem = 0;
+        $post->NoiBat = 0;
+        if ($req->hasFile('image')) {
+            $file = $req->file('image');
+            $ext = $file->getClientOriginalExtension();
+            if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg') {
+                return redirect()->route('slide')->with('Error', 'Phần mở rộng file ảnh chỉ gồm jpg, png, jpeg');
+            }
+            // delete old
+            $image_path = "images/tintuc/".$link; 
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            }
+            // create new
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('images/tintuc/'), $fileName);
+            $post->Hinh = $fileName;
+            // $location = public_path('public/assets/uploads/images/'.$fileName);
+            // Image::make($file)->resize(300, 300)->save($location);
+        }
+        $post->save();
+        return redirect()->route('post')->with("notify","Sửa thành công");
     }
 
-    public function getDestroyPost() {
-
+    public function getDestroyPost($id) {
+        $post = TinTuc::find($id);
+        $image_path = "images/tintuc/".$post->Hinh; 
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        $post->delete();
+        return redirect()->route('post')->with('notify', 'Đã xóa thành công');
     }
 
 }
