@@ -20,6 +20,15 @@
                     <button type="submit" class="btn btn-primary">Thêm mới</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                 <form>
+                @if ($errors->any())
+                    <div class="alert alert-danger" style="margin-top:12px">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
         <!-- /.row -->

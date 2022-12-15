@@ -4,6 +4,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SlideController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +42,7 @@ Route::group(['prefix' =>'/'], function() {
 });
 
 Route::group(["prefix" => "/admin"], function(){
+    // category
     Route::group(["prefix" => "/category"], function() {
         Route::get("/", [CategoryController::class, "getCategorys"])->name("category");
         Route::get("/add",[CategoryController::class, "getAddCategory"])->name("addCategory");
@@ -48,15 +51,31 @@ Route::group(["prefix" => "/admin"], function(){
         Route::post("/update/{id}",[CategoryController::class, "postUpdateCategory"])->name("updateCategory");
         Route::get("/delete/{id}",[CategoryController::class, "getDestroyCategory"])->name("destroyCategory");
     });
+    //  topic
     Route::group(["prefix" => "/topic"], function() {
         Route::get('/', [TopicController::class, "getTopics"])->name("topic");
-        // Route::get("/", [TopicController::class, "getTopics"])->name("topic");
         Route::get("/add",[TopicController::class, "getAddTopic"])->name("addTopic");
         Route::post("/add",[TopicController::class, "postAddTopic"])->name("addTopic");
         Route::get("/update/{id}",[TopicController::class, "getUpdateTopic"])->name("updateTopic");
         Route::post("/update/{id}",[TopicController::class, "postUpdateTopic"])->name("updateTopic");
         Route::get("/delete/{id}",[TopicController::class, "getDestroyTopic"])->name("destroyTopic");
     });
+    // user 
+    Route::group(["prefix" => "/user"], function() {
+        Route::get('/', [UserController::class, "getUsers"])->name("user");
+        Route::get("/update/{id}",[UserController::class, "getUpdateUser"])->name("updateUser");
+        Route::get("/delete/{id}",[UserController::class, "getDestroyUser"])->name("destroyUser");
+    });
+    // slide
+    Route::group(["prefix" => "/slide"], function() {
+        Route::get("/", [SlideController::class, "getSlides"])->name("slide");
+        Route::get("/add",[SlideController::class, "getAddSlide"])->name("addSlide");
+        Route::post("/add",[SlideController::class, "postAddSlide"])->name("addSlide");
+        Route::get("/update/{id}",[SlideController::class, "getUpdateSlide"])->name("updateSlide");
+        Route::post("/update/{id}",[SlideController::class, "postUpdateSlide"])->name("updateSlide");
+        Route::get("/delete/{id}",[SlideController::class, "getDestroySlide"])->name("destroySlide");
+    });
+    // post
     Route::group(["prefix" => "/post"], function() {
         Route::get("/", [PostController::class, "getPosts"])->name("post");
         Route::get("/add",[PostController::class, "getAddPost"])->name("addPost");
@@ -65,5 +84,11 @@ Route::group(["prefix" => "/admin"], function(){
         Route::get("/update/{id}",[PostController::class, "getUpdatePost"])->name("updatePost");
         Route::post("/update/{id}",[PostController::class, "postUpdatePost"])->name("updatePost");
         Route::get("/delete/{id}",[PostController::class, "getDestroyPost"])->name("destroyPost");
+        Route::group(['prefix' => 'ajax'], function(){
+            Route::get('topic/{categoryId}',[PostController::class, "getCategory"])->name('ajaxCategory');
+        });
     });
+    // Route::group(['prefix' => 'ajax'], function(){
+    //     Route::get('topic/{categoryId}',[PostController::class, "getCategory"])->name('ajaxCategory');
+    // });
 });
