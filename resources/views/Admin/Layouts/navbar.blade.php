@@ -55,10 +55,7 @@
                 <a href="#"><i class="fa fa-users fa-fw"></i> Quản lý người dùng<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Danh sách người dùng</a>
-                    </li>
-                    <li>
-                        <a href="#">Thêm người dùng</a>
+                        <a href="{{ route('user') }}">Danh sách người dùng</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -67,10 +64,10 @@
                 <a href="#"><i class="fa fa-users fa-fw"></i> Quản lý slide<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Danh sách slide</a>
+                        <a href="{{ route('slide') }}">Danh sách slide</a>
                     </li>
                     <li>
-                        <a href="#">Thêm slide</a>
+                        <a href="{{ route('addSlide') }}">Thêm slide</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
